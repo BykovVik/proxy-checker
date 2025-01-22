@@ -23,7 +23,7 @@ func proxyChecker(ip string, port int) bool {
 		Timeout: 5 * time.Second,
 	}
 	resp, err := client.Get("http://httpbin.org/ip")
-	fmt.Println(resp, err)
+	fmt.Println(err)
 	if err != nil {
 		return false
 	}
