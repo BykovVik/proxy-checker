@@ -5,11 +5,16 @@ import "fmt"
 func main() {
 	proxies, err := getJsonData()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("No working proxy found:", err)
 		return
 	}
 
-	for _, proxy := range proxies {
-		fmt.Printf("IP: %s, PORT: %d\n", proxy.IP, proxy.PORT)
+	ip, port, checkError := checkFirstWorkingProxy(proxies)
+
+	if checkError != nil {
+		fmt.Println(checkError)
 	}
+
+	fmt.Printf("Рабочий прокси: %s:%d", ip, port)
+	fmt.Println("")
 }
